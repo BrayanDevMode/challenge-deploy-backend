@@ -1,0 +1,14 @@
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# Java / Maven / Gradle
+target/
+build/
+.gradle/
+
+# Node / React
+node_modules/
+dist/
+.env
