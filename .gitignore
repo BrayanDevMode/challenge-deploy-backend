@@ -12,3 +12,6 @@ build/
 node_modules/
 dist/
 .env
+
+# H2 Database files
+*.db
