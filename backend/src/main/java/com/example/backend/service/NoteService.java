@@ -8,13 +8,34 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.backend.model.Category;
+import com.example.backend.repository.CategoryRepository;
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class NoteService {
 
     @Autowired
     private NoteRepository noteRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     public Note save(Note note) {
+        if (note.getCategories() != null) {
+            Set<Category> managedCategories = new HashSet<>();
+            for (Category category : note.getCategories()) {
+                Category existingCategory = categoryRepository.findByName(category.getName());
+                if (existingCategory != null) {
+                    managedCategories.add(existingCategory);
+                } else {
+                    managedCategories.add(categoryRepository.save(category));
+                }
+            }
+            note.setCategories(managedCategories);
+        }
+
         return noteRepository.save(note);
     }
 
