@@ -1,25 +1,36 @@
 #!/bin/bash
 
-echo "Starting Ensolvers Challenge - Notes App..."
+echo "Starting Ensolvers Challenge..."
 
-# 1. Start Backend (Spring Boot) in background
-echo "Starting Backend (Java + Spring Boot)..."
+# 1. Basic requirement checks
+if ! command -v java &> /dev/null; then
+    echo "ERROR: Java could not be found."
+    echo "   Please install Java 17+ and ensure it is in your PATH."
+    exit 1
+fi
+
+if ! command -v npm &> /dev/null; then
+    echo "ERROR: npm could not be found."
+    echo "   Please install Node.js."
+    exit 1
+fi
+
+# 2. Start Backend
+echo "Starting Backend..."
 cd backend
-# Grant execution permissions to Maven wrapper
 chmod +x mvnw
-# Run in background and save PID
 ./mvnw spring-boot:run &
 BACKEND_PID=$!
 
-echo "Waiting for Backend to start (15 seconds)..."
+echo "Waiting for Backend to initialize (15s)..."
 sleep 15
 
-# 2. Start Frontend (React)
-echo "Starting Frontend (React + Vite)..."
+# 3. Start Frontend
+echo "Starting Frontend..."
 cd ../frontend
 npm install
-echo "Everything ready. Opening application..."
+echo "App is ready! Opening..."
 npm run dev
 
-# Optional: Kill backend when script exits
+# Kill backend when script exits
 kill $BACKEND_PID
