@@ -5,7 +5,7 @@ Single Page Application (SPA) to manage notes, including features to create, edi
 ## Technologies Used
 
 ### Backend
-* **Java 21** (Compatible with Java 17+)
+* **Java 21**
 * **Spring Boot 3.x**
 * **Spring Data JPA** (Persistence layer)
 * **H2 Database** (File-based embedded database)
@@ -19,12 +19,12 @@ Single Page Application (SPA) to manage notes, including features to create, edi
 ## Prerequisites
 
 Ensure you have the following installed on your system:
-* **Java JDK 17** or higher (`java -version`)
+* **Java JDK 21** (`java -version`)
 * **Node.js** v18 or higher (`node -v`)
 
 ## How to Run
 
-### Automatic Script (Linux/macOS)
+### Option A: Automatic Script (Linux/macOS)
 From the project root directory, run:
 
 ```bash
