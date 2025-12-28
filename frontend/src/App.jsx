@@ -57,7 +57,7 @@ function App() {
                         className="btn btn-sm btn-warning"
                         onClick={() => toggleArchive(note.id)}
                     >
-                        {note.archived ? 'Desarchivar' : 'Archivar'}
+                        {note.archived ? 'Unarchive' : 'File'}
                     </button>
                     <button
                         className="btn btn-sm btn-danger"
@@ -72,7 +72,7 @@ function App() {
 
     return (
         <div className="container mt-5">
-            <h1 className="text-center mb-4">Mis Notas 📝</h1>
+            <h1 className="text-center mb-4">My Notes 📝</h1>
 
             {/* Creation form */}
             <div className="card mb-4 shadow-sm">
@@ -83,7 +83,7 @@ function App() {
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="Título"
+                                placeholder="Title"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 required
@@ -92,14 +92,14 @@ function App() {
                         <div className="mb-2">
                       <textarea
                           className="form-control"
-                          placeholder="Contenido"
+                          placeholder="Content"
                           rows="2"
                           value={content}
                           onChange={(e) => setContent(e.target.value)}
                           required
                       ></textarea>
                         </div>
-                        <button type="submit" className="btn btn-success">Guardar</button>
+                        <button type="submit" className="btn btn-success">Save</button>
                     </form>
                 </div>
             </div>
@@ -110,13 +110,13 @@ function App() {
                     className={`btn me-2 ${!showArchived ? 'btn-primary' : 'btn-outline-primary'}`}
                     onClick={() => setShowArchived(false)}
                 >
-                    Notas Activas ({notes.length})
+                    Active Notes ({notes.length})
                 </button>
                 <button
                     className={`btn ${showArchived ? 'btn-secondary' : 'btn-outline-secondary'}`}
                     onClick={() => setShowArchived(true)}
                 >
-                    Notas Archivadas ({archivedNotes.length})
+                    Archived Notes ({archivedNotes.length})
                 </button>
             </div>
 
@@ -127,8 +127,8 @@ function App() {
                     : notes.map(renderNoteCard)
                 }
 
-                {(!showArchived && notes.length === 0) && <p className="text-center text-muted">No hay notas activas.</p>}
-                {(showArchived && archivedNotes.length === 0) && <p className="text-center text-muted">No hay notas archivadas.</p>}
+                {(!showArchived && notes.length === 0) && <p className="text-center text-muted">There are no active notes.</p>}
+                {(showArchived && archivedNotes.length === 0) && <p className="text-center text-muted">There are no notes on file.</p>}
             </div>
         </div>
     );
